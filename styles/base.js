@@ -3,4 +3,5 @@ export const container = {
     backgroundColor: '#fff8dc',
     paddingLeft: 12,
     paddingRight: 12,
+    lineHeight: 1.4,
 };

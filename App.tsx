@@ -9,6 +9,8 @@ import { Base } from "../lager/styles";
 
 import Home from "./components/Home.tsx";
 import Pick from "./components/Pick.tsx";
+import Deliveries from "./components/Deliveries.tsx";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -35,6 +37,9 @@ export default function App() {
         <Tab.Screen name="Plock">
           {() => <Pick setProducts={setProducts} />}
         </Tab.Screen>
+        <Tab.Screen name="Inleverans">
+          {() => <Deliveries setProducts={setProducts} />}
+        </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
@@ -49,4 +54,5 @@ const styles = StyleSheet.create({
 const routeIcons = {
   "Lager": "home",
   "Plock": "list",
+  "Inleverans": "send",
 };

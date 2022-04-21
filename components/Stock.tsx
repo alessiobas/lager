@@ -3,9 +3,9 @@ import { Text, View } from 'react-native';
 import config from "../config/config.json";
 import { Base, Typography } from '../styles';
 
-import productModel from "../models/products.ts";
+import productModel from "../models/products";
 
-function StockList({products, setProducts}) {
+function StockList({ products, setProducts }) {
     useEffect(async () => {
         setProducts(await productModel.getProducts());
     }, []);
@@ -23,7 +23,7 @@ function StockList({products, setProducts}) {
     );
 };
 
-export default function Stock({products, setProducts}) {
+export default function Stock({ products, setProducts }) {
     return (
         <View>
             <Text style={Typography.header2}>Lagerförteckning</Text>
