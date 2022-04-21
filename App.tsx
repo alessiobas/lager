@@ -10,12 +10,19 @@ import { Base } from "../lager/styles";
 import Home from "./components/Home.tsx";
 import Pick from "./components/Pick.tsx";
 import Deliveries from "./components/Deliveries.tsx";
+import authModel from "./models/auth";
+import Auth from "./components/auth/Auth";
 
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [products, setProducts] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+
+  useEffect(async () => {
+    setIsLoggedIn(await authModel.loggedIn())
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,6 +47,14 @@ export default function App() {
         <Tab.Screen name="Inleverans">
           {() => <Deliveries setProducts={setProducts} />}
         </Tab.Screen>
+        {isLoggedIn ?
+          <Tab.Screen name="Faktura">
+            {() => <Invoices setSOMETHING={setSOMETHING} />}
+          </Tab.Screen> :
+          <Tab.Screen name="Logga in">
+            {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
+          </Tab.Screen>
+        }
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
