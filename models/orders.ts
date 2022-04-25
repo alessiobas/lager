@@ -13,6 +13,14 @@ const orders = {
 
         return result.data;
     },
+
+    getOrder: async function getOrder(id: number) {
+        const response = await fetch(`${config.base_url}/orders/${id}?api_key=${config.api_key}`);
+        const result = await response.json();
+
+        return result.data;
+    },
+
     pickOrder: async function pickOrder(order: Partial<Order>) {
         await Promise.all(order.order_items.map(async (order_item: Partial<OrderItem>) => {
             let changedProduct = {

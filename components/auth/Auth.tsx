@@ -5,7 +5,7 @@ import Register from "./Register";
 
 const Stack = createNativeStackNavigator();
 
-export default function Deliveries(props) {
+export default function Auth(props) {
     return (
         <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login">

@@ -11,6 +11,7 @@ const storage = {
 
             await AsyncStorage.setItem('@token', jsonValue);
         } catch (e) {
+            console.log(e);
             // saving error handled in kmom06
         }
     },
@@ -19,6 +20,7 @@ const storage = {
             const jsonValue = await AsyncStorage.getItem('@token');
             return jsonValue != null ? JSON.parse(jsonValue) : null;
         } catch (e) {
+            console.log(e);
             // error reading value handled in kmom06
         }
     },

@@ -4,8 +4,8 @@ import storage from "./storage";
 
 const auth = {
     loggedIn: async function loggedIn() {
-        const tokenAndDate = storage.readToken();
-        const twentyFourHours = 1000*60*60*24
+        const tokenAndDate: any = await storage.readToken();
+        const twentyFourHours = 1000*60*60*24;
         const notExpired = (new Date().getTime() - tokenAndDate.date) < twentyFourHours;
 
         return tokenAndDate.token && notExpired;
@@ -45,6 +45,7 @@ const auth = {
         });
 
         const result = await respons.json();
+
         await storage.storeToken(result.data.token);
         return result.data.message;
     },

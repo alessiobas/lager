@@ -7,9 +7,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Base } from "../lager/styles";
 
-import Home from "./components/Home.tsx";
-import Pick from "./components/Pick.tsx";
-import Deliveries from "./components/Deliveries.tsx";
+import Home from "./components/Home";
+import Pick from "./components/Pick";
+import Deliveries from "./components/Deliveries";
+import Invoices from "./components/invoices/Invoices";
 import authModel from "./models/auth";
 import Auth from "./components/auth/Auth";
 
@@ -49,7 +50,7 @@ export default function App() {
         </Tab.Screen>
         {isLoggedIn ?
           <Tab.Screen name="Faktura">
-            {() => <Invoices setSOMETHING={setSOMETHING} />}
+            {() => <Invoices setIsLoggedIn={setIsLoggedIn} />}
           </Tab.Screen> :
           <Tab.Screen name="Logga in">
             {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
@@ -70,4 +71,6 @@ const routeIcons = {
   "Lager": "home",
   "Plock": "list",
   "Inleverans": "send",
+  "Logga in": "lock-closed",
+  "Faktura": "cash-outline",
 };
