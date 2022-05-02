@@ -10,13 +10,21 @@ export default function Register({ navigation }) {
     async function doRegister() {
         if (auth.email && auth.password) {
             const result = await AuthModel.register(auth.email, auth.password);
-            navigation.navigate("Login");
+            if (result.type === "success") {
+                navigation.navigate("Login");
+            }
+            showMessage({
+                message: result.title,
+                description: result.message,
+                type: result.type
+            });
         } else {
             showMessage({
                 message: "Input saknas",
                 description: "E-post eller lösenord saknas",
                 type: "warning"
             });
+        }
     }
 
     return (

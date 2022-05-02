@@ -5,7 +5,7 @@ import { showMessage } from 'react-native-flash-message';
 export default function AuthFields({ auth, setAuth, title, submit, navigation}) {
 
     function validatePassword(text: string) {
-        const pattern = /^(=?.\d)(?=.[a-z])(?=.*[A-Z]).{4,}$/
+        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,100}$/
 
         if (!text.match(pattern)) {
             showMessage({
