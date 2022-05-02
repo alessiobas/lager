@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Base } from "../lager/styles";
+import FlashMessage from "react-native-flash-message";
 
 import Home from "./components/Home";
 import Pick from "./components/Pick";
@@ -62,6 +63,7 @@ export default function App() {
         </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
+      <FlashMessage position="top" />
       <StatusBar style="auto" />
     </SafeAreaView>
   );

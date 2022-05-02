@@ -46,8 +46,20 @@ const auth = {
 
         const result = await respons.json();
 
+        if (Object.prototype.hasOwnProperty.call(result, "errors")) {
+            return {
+                message: result.errors.title,
+                description: result.errors.detail,
+                type: "danger"
+            }
+        }
+
         await storage.storeToken(result.data.token);
-        return result.data.message;
+        return {
+            message: "Success",
+            description: result.data.message,
+            type: "success"
+        };
     },
 
     logout: async function logout() {
