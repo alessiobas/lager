@@ -13,6 +13,7 @@ import Deliveries from "./components/Deliveries";
 import Invoices from "./components/invoices/Invoices";
 import authModel from "./models/auth";
 import Auth from "./components/auth/Auth";
+import Ship from "./components/ship/Ship";
 
 
 const Tab = createBottomTabNavigator();
@@ -56,6 +57,9 @@ export default function App() {
             {() => <Auth setIsLoggedIn={setIsLoggedIn} />}
           </Tab.Screen>
         }
+        <Tab.Screen name="Skicka order">
+          {() => <Ship/>}
+        </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
@@ -73,4 +77,5 @@ const routeIcons = {
   "Inleverans": "send",
   "Logga in": "lock-closed",
   "Faktura": "cash-outline",
+  "Skicka order": "map",
 };
