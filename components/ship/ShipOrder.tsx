@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Base, Typography } from "../../styles";
+import { DataTable } from 'react-native-paper';
 
 import MapView from 'react-native-maps';
 import { Marker } from "react-native-maps";
@@ -13,6 +14,25 @@ export default function ShipOrder({ route }) {
     const [marker, setMarker] = useState(null);
     const [locationMarker, setLocationMarker] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+
+    const orderInfo = (
+        <Text style={Typography.normal}>
+            {order.name}{"\n"}
+            {order.address}{"\n"}
+            {order.zip} {order.city}{"\n"}
+            {order.country}{"\n"}
+        </Text>
+    );
+
+    const orderItemsInfo = order.order_items
+        .map((item, index) => {
+            return <DataTable.Row key={index}>
+                    <DataTable.Cell>{item.name}</DataTable.Cell>
+                    <DataTable.Cell>{item.article_number}</DataTable.Cell>
+                    <DataTable.Cell>{item.amount}</DataTable.Cell>
+                    <DataTable.Cell>{item.location}</DataTable.Cell>
+                </DataTable.Row>
+        });
 
     useEffect(() => {
         (async () => {
@@ -50,6 +70,16 @@ export default function ShipOrder({ route }) {
     return (
         <View style={Base.container}>
             <Text style={Typography.header2}>Skicka order</Text>
+            {orderInfo}
+            <DataTable>
+                <DataTable.Header>
+                    <DataTable.Title>Produkt</DataTable.Title>
+                    <DataTable.Title>Artikelnummer</DataTable.Title>
+                    <DataTable.Title>Antal</DataTable.Title>
+                    <DataTable.Title>Plats</DataTable.Title>
+                </DataTable.Header>
+                {orderItemsInfo}
+            </DataTable>
             <View style={styles.container}>
                 <MapView
                     style={styles.map}
