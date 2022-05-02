@@ -4,6 +4,7 @@ import { View, Text, Button, ScrollView } from "react-native";
 import { Base, Typography } from "../../styles";
 import invoiceModel from "../../models/invoices";
 import storage from '../../models/storage';
+import { showMessage } from 'react-native-flash-message';
 
 export default function InvoicesList({ route, navigation, setIsLoggedIn }) {
     let { reload } = route.params || false;
@@ -24,6 +25,11 @@ export default function InvoicesList({ route, navigation, setIsLoggedIn }) {
     async function logOut() {
         storage.deleteToken();
         setIsLoggedIn(false);
+        showMessage({
+            message: "Utloggad",
+            description: "Logga in igen för att hantera fakturor",
+            type: "success"
+        });
     }
 
     const invoicesRows = allInvoices // Går bra att lägga till fler Celler med info
