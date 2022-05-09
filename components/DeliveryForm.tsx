@@ -9,6 +9,30 @@ import deliveryModel from "../models/deliveries";
 import Delivery from "../interfaces/delivery";
 import Product from '../interfaces/product';
 
+import { showMessage } from 'react-native-flash-message';
+
+function validateInput(delivery) {
+    if (delivery.amount < 1 || !delivery.amount) {
+        showMessage({
+            message: "Antal saknas",
+            description: "Välj antal",
+            type: "warning"
+        });
+        return false;
+    }
+
+    if (!delivery.delivery_date) {
+        showMessage({
+            message: "Datum saknas",
+            description: "Välj ett datum för leverans",
+            type: "warning"
+        });
+        return false;
+    }
+
+    return true;
+};
+
 
 
 export default function DeliveryForm({ navigation , setProducts }) {
@@ -128,7 +152,9 @@ export default function DeliveryForm({ navigation , setProducts }) {
             <Button
                 title="Gör inleverans"
                 onPress={() => {
-                    addDelivery(navigation, delivery, setProducts);
+                    if (validateInput(delivery)) {
+                        addDelivery(navigation, delivery, setProducts);
+                    }
                 }}
             />
 
