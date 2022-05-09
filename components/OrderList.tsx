@@ -3,9 +3,9 @@ import { View, Text, Button } from "react-native";
 import { Base, Typography } from '../styles';
 import orderModel from "../models/orders.ts";
 
-export default function OrderList({ route, navigation }) {
+export default function OrderList({ route, navigation, setAllOrders, allOrders }) {
     let { reload } = route.params || false;
-    const [allOrders, setAllOrders] = useState([]);
+    // const [allOrders, setAllOrders] = useState([]);
 
     if (reload) {
         reloadOrders();
@@ -15,7 +15,7 @@ export default function OrderList({ route, navigation }) {
         setAllOrders(await orderModel.getOrders());
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         reloadOrders();
     }, []);
 

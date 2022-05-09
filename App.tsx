@@ -21,6 +21,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [products, setProducts] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
   useEffect(async () => {
@@ -45,7 +46,7 @@ export default function App() {
             {() => <Home products={products} setProducts={setProducts} />}
         </Tab.Screen>
         <Tab.Screen name="Plock">
-          {() => <Pick setProducts={setProducts} />}
+          {() => <Pick setProducts={setProducts} allOrders={allOrders} setAllOrders={setAllOrders} />}
         </Tab.Screen>
         <Tab.Screen name="Inleverans">
           {() => <Deliveries setProducts={setProducts} />}
