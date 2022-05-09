@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View, Text, Button } from "react-native";
-import { Typography } from '../styles';
+import { Base, Typography } from '../styles';
 import orderModel from "../models/orders.ts";
 
 export default function OrderList({ route, navigation }) {
@@ -34,7 +34,7 @@ export default function OrderList({ route, navigation }) {
         });
 
     return (
-        <View>
+        <View style={Base.container}>
             <Text style={Typography.header2}>Ordrar redo att plockas</Text>
             {listOfOrders}
         </View>
